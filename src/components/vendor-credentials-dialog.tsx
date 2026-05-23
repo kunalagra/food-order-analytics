@@ -22,7 +22,7 @@ interface VendorCredentialsDialogProps {
   instructions: string;
   accountId?: string; // If provided, we're updating
   onSuccess?: () => void;
-  children?: React.ReactNode;
+  children?: React.ReactElement;
 }
 
 export function VendorCredentialsDialog({
@@ -70,7 +70,7 @@ export function VendorCredentialsDialog({
     <Dialog open={open} onOpenChange={handleOpenChange}>
       <DialogTrigger
         render={
-          (children as React.ReactNode) || (
+          children || (
             <Button
               variant={isConnected ? "outline" : "default"}
               size="sm"

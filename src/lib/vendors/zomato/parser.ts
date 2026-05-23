@@ -122,6 +122,7 @@ export function parseZomatoOrder(entity: ZomatoOrderEntity): Order {
   return {
     id: `zomato-${entity.orderId}`,
     vendorId: "zomato",
+    accountId: "",
     orderId: entity.orderId.toString(),
     totalCost: entity.totalCost,
     orderDate,

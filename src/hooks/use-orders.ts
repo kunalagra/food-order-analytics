@@ -24,7 +24,11 @@ interface UseOrdersReturn {
 }
 
 export function useOrders({ vendorId }: UseOrdersOptions): UseOrdersReturn {
-  const { credentials } = useCredentials();
+  const { accounts } = useCredentials();
+  const credentials = accounts.reduce<Record<string, { cookie: string }>>((acc, curr) => {
+    acc[curr.vendorId] = curr.credentials;
+    return acc;
+  }, {});
   const [orders, setOrders] = useState<Order[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isLoadingMore, setIsLoadingMore] = useState(false);

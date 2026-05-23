@@ -34,7 +34,7 @@ let dbPromise: Promise<IDBPDatabase<OrderDBSchema>> | null = null;
 function getDB(): Promise<IDBPDatabase<OrderDBSchema>> {
   if (!dbPromise) {
     dbPromise = openDB<OrderDBSchema>(DB_NAME, DB_VERSION, {
-      upgrade(db, oldVersion, _newVersion, _tx) {
+      upgrade(db, oldVersion, _newVersion, tx) {
         if (oldVersion < 1) {
           const orderStore = db.createObjectStore("orders", { keyPath: "id" });
           orderStore.createIndex("by-vendor", "vendorId");
